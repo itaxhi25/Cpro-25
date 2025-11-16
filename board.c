@@ -11,15 +11,15 @@ void terminate(int a, int b, int *c) {
 void print_board(char arr[][24])
 {
     printf(" "); // Leading space for top border
-    for (int k = 0; k < 48; k++) { // double for emoji width
+    for (int k = 0; k < 44; k++) { // double for emoji width
         printf("—");
     }
     printf("\n");
 
-    for (int i = 0; i < 24; i++) 
+    for (int i = 0; i < 22; i++) 
     {
         printf("|");
-        for (int j = 0; j < 24; j++) {
+        for (int j = 0; j < 22; j++) {
             if (arr[i][j] == 'G') {
                 printf("🟢");
             }
@@ -40,7 +40,7 @@ void print_board(char arr[][24])
     printf("\n");
 }
 
-int red_search(int a, int b, char arr[][24]) {
+int red_search(int a, int b, char arr[][22]) {
     if (arr[a][b] == 'B' || arr[a][b] == 'R') {
         return 0;
     }
@@ -49,7 +49,7 @@ int red_search(int a, int b, char arr[][24]) {
     }
 }
 
-int blue_search(int a, int b, char arr[][24]) {
+int blue_search(int a, int b, char arr[][22]) {
     if (arr[a][b] == 'R' || arr[a][b] == 'B') {
         return 0;
     }
@@ -59,9 +59,9 @@ int blue_search(int a, int b, char arr[][24]) {
 }
 
 int main(void) {
-    char board_copy[24][24];
-    for (int i = 0; i < 24; i++) {
-        for (int j = 0; j < 24; j++) {
+    char board_copy[22][22];
+    for (int i = 0; i < 22; i++) {
+        for (int j = 0; j < 22; j++) {
             board_copy[i][j] = 'G';
         }
     }
@@ -77,7 +77,7 @@ printf(" \t \t \t \t \t \t \t  Welcome to Twixt! \n \t \t \t \t \t \t \t  Enter 
                 terminate(red_x, red_y, &c);
                 continue;
             }
-            while (red_search(red_x-1, red_y-1, board_copy) == 0 || red_x > 23 || red_y > 23 || red_x < 1 || red_y < 1) {
+            while (red_search(red_x-1, red_y-1, board_copy) == 0 || red_x > 21 || red_y > 21 || red_x < 1 || red_y < 1) {
                 printf("Invalid move! Try again.\n");
                 printf("Red's turn. Enter coordinates (x y): ");
                 scanf("%d %d", &red_x, &red_y);
@@ -94,7 +94,7 @@ printf(" \t \t \t \t \t \t \t  Welcome to Twixt! \n \t \t \t \t \t \t \t  Enter 
                 terminate(blue_x, blue_y, &c);
                 continue;
             }
-            while (blue_search(blue_x-1, blue_y-1, board_copy) == 0 || blue_x > 23 || blue_y > 23 || blue_x < 1 || blue_y < 1) {
+            while (blue_search(blue_x-1, blue_y-1, board_copy) == 0 || blue_x > 21 || blue_y > 21 || blue_x < 1 || blue_y < 1) {
                 printf("Invalid move! Try again.\n");
                 printf("Blue's turn. Enter coordinates (x y): ");
                 scanf("%d %d", &blue_x, &blue_y);
