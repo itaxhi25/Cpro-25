@@ -8,60 +8,66 @@ void terminate(int a, int b, int *c) {
     }
 }
 
-void print_board(char arr[][22])
+void print_board(char arr[][24])
 {
-    printf(" ");
-    for (int k = 0; k < 44; k++) {
-        printf("—");
+    printf("   ");
+    for (int p = 1; p < 23; p++) {
+        if (arr[0][p] == 'Y') printf("🟡");
+        else if (arr[0][p] == 'R') printf("🔴");
+        else if (arr[0][p] == 'B') printf("🔵");
     }
     printf("\n");
 
-    for (int i = 0; i < 22; i++)
-    {
-        printf("|");
-        for (int j = 0; j < 22; j++) {
-            if (arr[i][j] == 'Y') {
-                printf("🟡");
-            }
-            else if (arr[i][j] == 'R') {
-                printf("🔴");
-            }
-            else if (arr[i][j] == 'B') {
-                printf("🔵");
-            }
+    printf("   ");
+    for (int k = 0; k < 44; k++) printf("\033[34m—\033[0m"); // blue
+    printf("\n");
+
+    for (int i = 1; i < 23; i++) {
+        printf("\033[31m|\033[0m"); // red left
+        if (arr[i][0] == 'Y') printf("🟡");
+        else if (arr[i][0] == 'R') printf("🔴");
+        else if (arr[i][0] == 'B') printf("🔵");
+        for (int j = 1; j < 23; j++) {
+            if (arr[i][j] == 'Y') printf("🟡");
+            else if (arr[i][j] == 'R') printf("🔴");
+            else if (arr[i][j] == 'B') printf("🔵");
         }
-        printf("|\n");
+        if (arr[i][23] == 'Y') printf("🟡");
+        else if (arr[i][23] == 'R') printf("🔴");
+        else if (arr[i][23] == 'B') printf("🔵");
+        printf("\033[31m|\033[0m"); // red right
+        printf("\n");
     }
 
-    printf(" ");
-    for (int k = 0; k < 44; k++) {
-        printf("—");
+    printf("   ");
+    for (int k = 0; k < 44; k++) printf("\033[34m—\033[0m"); // blue
+    printf("\n");
+
+    printf("   ");
+    for (int p = 1; p < 23; p++) {
+        if (arr[23][p] == 'Y') printf("🟡");
+        else if (arr[23][p] == 'R') printf("🔴");
+        else if (arr[23][p] == 'B') printf("🔵");
     }
     printf("\n");
 }
 
-int red_search(int a, int b, char arr[][22]) {
-    if (arr[a][b] == 'B' || arr[a][b] == 'R') {
-        return 0;
-    }
-    else {
-        return 1;
-    }
+int red_search(int a, int b, char arr[][24]) {
+    if (arr[a][b] == 'B' || arr[a][b] == 'R') return 0;
+    else if(a == 0 || a == 23) return 0;
+    return 1;
 }
 
-int blue_search(int a, int b, char arr[][22]) {
-    if (arr[a][b] == 'R' || arr[a][b] == 'B') {
-        return 0;
-    }
-    else {
-        return 1;
-    }
+int blue_search(int a, int b, char arr[][24]) {
+    if (arr[a][b] == 'R' || arr[a][b] == 'B') return 0;
+    else if(b == 0 || b == 23) return 0;
+    return 1;
 }
 
 int main(void) {
-    char board_copy[22][22];
-    for (int i = 0; i < 22; i++) {
-        for (int j = 0; j < 22; j++) {
+    char board_copy[24][24];
+    for (int i = 0; i < 24; i++) {
+        for (int j = 0; j < 24; j++) {
             board_copy[i][j] = 'Y';
         }
     }
@@ -77,7 +83,7 @@ int main(void) {
                 terminate(red_x, red_y, &c);
                 continue;
             }
-            while (red_search(red_x-1, red_y-1, board_copy) == 0 || red_x > 22 || red_y > 22 || red_x < 1 || red_y < 1) {
+            while (red_search(red_x-1, red_y-1, board_copy) == 0 || red_x > 23 || red_y > 23 || red_x < 1 || red_y < 1) {
                 printf("Invalid move! Try again.\n");
                 printf("Red's turn. Enter coordinates (y x): ");
                 scanf("%d %d", &red_x, &red_y);
@@ -94,7 +100,7 @@ int main(void) {
                 terminate(blue_x, blue_y, &c);
                 continue;
             }
-            while (blue_search(blue_x-1, blue_y-1, board_copy) == 0 || blue_x > 22 || blue_y > 22 || blue_x < 1 || blue_y < 1) {
+            while (blue_search(blue_x-1, blue_y-1, board_copy) == 0 || blue_x > 23 || blue_y > 23 || blue_x < 1 || blue_y < 1) {
                 printf("Invalid move! Try again.\n");
                 printf("Blue's turn. Enter coordinates (y x): ");
                 scanf("%d %d", &blue_x, &blue_y);
