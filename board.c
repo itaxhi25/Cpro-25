@@ -19,28 +19,28 @@ void print_board(char arr[][24])
     printf("\n");
 
     printf("   ");
-    for (int k = 0; k < 44; k++) printf("\033[34m—\033[0m"); // blue
+    for (int k = 0; k < 44; k++) printf("—");
     printf("\n");
 
     for (int i = 1; i < 23; i++) {
-        printf("\033[31m|\033[0m"); // red left
         if (arr[i][0] == 'Y') printf("🟡");
         else if (arr[i][0] == 'R') printf("🔴");
         else if (arr[i][0] == 'B') printf("🔵");
+        printf("|");
         for (int j = 1; j < 23; j++) {
             if (arr[i][j] == 'Y') printf("🟡");
             else if (arr[i][j] == 'R') printf("🔴");
             else if (arr[i][j] == 'B') printf("🔵");
         }
+        printf("|");
         if (arr[i][23] == 'Y') printf("🟡");
         else if (arr[i][23] == 'R') printf("🔴");
         else if (arr[i][23] == 'B') printf("🔵");
-        printf("\033[31m|\033[0m"); // red right
         printf("\n");
     }
 
     printf("   ");
-    for (int k = 0; k < 44; k++) printf("\033[34m—\033[0m"); // blue
+    for (int k = 0; k < 44; k++) printf("—");
     printf("\n");
 
     printf("   ");
@@ -71,7 +71,8 @@ int main(void) {
             board_copy[i][j] = 'Y';
         }
     }
-    printf(" \t \t \t \t \t \t \t  Welcome to Twixt! \n \t \t \t \t \t \t \t  Enter -2 -2 to exit \n \n \n ");
+    printf(" \t \t \t \t \t \t \t  Welcome to Twixt! \n \t \t \t \t \t \t \t  Enter -2 -2 to exit \n \n \n \n \n \n ");
+    print_board(board_copy);
     int count = 1;
     int c = 1;
     while (c == 1) {
