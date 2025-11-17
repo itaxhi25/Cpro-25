@@ -20,8 +20,8 @@ void print_board(char arr[][22])
     {
         printf("|");
         for (int j = 0; j < 22; j++) {
-            if (arr[i][j] == 'G') {
-                printf("🟢");
+            if (arr[i][j] == 'Y') {
+                printf("🟡");
             }
             else if (arr[i][j] == 'R') {
                 printf("🔴");
@@ -62,7 +62,7 @@ int main(void) {
     char board_copy[22][22];
     for (int i = 0; i < 22; i++) {
         for (int j = 0; j < 22; j++) {
-            board_copy[i][j] = 'G';
+            board_copy[i][j] = 'Y';
         }
     }
     printf(" \t \t \t \t \t \t \t  Welcome to Twixt! \n \t \t \t \t \t \t \t  Enter -2 -2 to exit \n \n \n ");
