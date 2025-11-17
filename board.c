@@ -10,7 +10,7 @@ void terminate(int a, int b, int *c) {
 
 void print_board(char arr[][24])
 {
-    printf("   ");
+    printf("  ");
     for (int p = 1; p < 23; p++) {
         if (arr[0][p] == 'Y') printf("🟡");
         else if (arr[0][p] == 'R') printf("🔴");
